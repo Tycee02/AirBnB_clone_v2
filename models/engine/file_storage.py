@@ -9,13 +9,21 @@ class FileStorage:
     __objects = {}
 
     def all(self, cls=None):
-        """Returns the list of objects of one type of class."""
-
-        if cls is None:
-            return list(self.__objects.values())
-
-        # Filter objects by class
-        return [obj for obj in self.__objects.values() if isinstance(obj, cls)]
+        """returns a dictionary
+        Return:
+            returns a dictionary of __object
+        """
+        dic = {}
+        if cls:
+            dictionary = self.__objects
+            for key in dictionary:
+                partition = key.replace('.', ' ')
+                partition = shlex.split(partition)
+                if (partition[0] == cls.__name__):
+                    dic[key] = self.__objects[key]
+            return (dic)
+        else:
+            return self.__objects
 
     def new(self, obj):
         """Adds new object to storage dictionary"""
@@ -59,3 +67,8 @@ class FileStorage:
         if obj is None:
             key = "{}.{}".format(type(obj).__name__, obj.id)
             del self.__objects[key]
+
+    def close(self):
+        """calls reload()
+        """
+        self.reload()
