@@ -3,8 +3,8 @@
 Start a flask web application
 """
 
-from flask import Flask
-from flask import abort
+from flask import Flask # type: ignore
+from flask import abort # type: ignore
 
 app = Flask(__name__)
 
@@ -30,7 +30,7 @@ def pythoniscool(text='is cool'):
     return 'Python ' + text.replace('_', ' ')
 
 
-@app.route('/number<int:n>', strict_slashes=False)
+@app.route("/number/<int:n>", strict_slashes=False)
 def number(n):
     return "{} is a number".format(n)
 
