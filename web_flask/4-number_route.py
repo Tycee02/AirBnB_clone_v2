@@ -3,8 +3,10 @@
 Start a flask web application
 """
 
-from flask import Flask # type: ignore
-from flask import abort # type: ignore
+
+from flask import Flask  # type: ignore
+from flask import abort  # type: ignore
+
 
 app = Flask(__name__)
 
